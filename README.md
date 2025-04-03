@@ -105,6 +105,45 @@ async def decir(ctx, *, mensaje):
 
 ---
 
+## 🖼️ Usando APIs con `requests`
+
+Podemos hacer que nuestro bot obtenga datos de una API externa, como imágenes de gatos o memes aleatorios.
+
+Primero, instala `requests` si no lo tienes:
+```bash
+pip install requests
+```
+
+Ejemplo de comando para obtener un meme aleatorio de [some-random-api](https://some-random-api.com/):
+
+```python
+import requests
+
+@bot.command()
+async def meme(ctx):
+    response = requests.get("https://some-random-api.com/meme")
+    if response.status_code == 200:
+        data = response.json()
+        await ctx.send(data["image"])
+    else:
+        await ctx.send("No pude obtener un meme 😢")
+```
+
+Otro ejemplo para obtener imágenes de gatitos de [The Cat API](https://thecatapi.com/):
+
+```python
+@bot.command()
+async def gato(ctx):
+    response = requests.get("https://api.thecatapi.com/v1/images/search")
+    if response.status_code == 200:
+        data = response.json()
+        await ctx.send(data[0]["url"])
+    else:
+        await ctx.send("No encontré gatitos 😿")
+```
+
+---
+
 ## 🛑 Consejos Importantes
 
 🔹 **Nunca compartas tu TOKEN** (usa un `.env` o variables de entorno).
