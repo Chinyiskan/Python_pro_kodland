@@ -61,6 +61,55 @@ bot.run(os.getenv("DISCORD_TOKEN"))
 
 ---
 
+## 🛡️ Usando `dotenv` para Proteger el TOKEN del Bot
+
+Para evitar exponer información sensible como el TOKEN del bot, usamos `dotenv`, que nos permite almacenar valores en un archivo `.env`. 🎭
+
+### 1️⃣ Instalar `python-dotenv`
+Ejecuta en la terminal:
+```bash
+pip install python-dotenv
+```
+
+### 2️⃣ Crear el archivo `.env`
+En el directorio del proyecto, crea un archivo llamado `.env` y agrega:
+```env
+DISCORD_TOKEN=tu_super_secreto_token_aqui
+```
+🔹 **Recuerda**: Para evitar que este archivo se suba a GitHub, agrégalo al `.gitignore`:
+```bash
+echo "*.env" >> .gitignore
+```
+
+### 3️⃣ Modificar `bot.py` para Usar `dotenv`
+```python
+import discord
+from discord.ext import commands
+import os
+from dotenv import load_dotenv  # Importamos dotenv
+
+# Cargar variables desde .env
+load_dotenv()
+TOKEN = os.getenv("DISCORD_TOKEN")  # Obtener el TOKEN del archivo .env
+
+bot = commands.Bot(command_prefix="!")
+
+@bot.event
+async def on_ready():
+    print(f'✅ {bot.user} está listo para la acción!')
+
+bot.run(TOKEN)  # Iniciar el bot
+```
+
+### 4️⃣ Verificar que Todo Funcione
+Ejecuta el script:
+```bash
+python bot.py
+```
+Si todo está bien, deberías ver el mensaje ✅ en la consola sin exponer tu TOKEN en el código. 🎉
+
+---
+
 ## ⚡ Eventos Importantes
 
 Discord usa eventos para reaccionar a lo que ocurre en los servidores. Algunos esenciales:
@@ -101,45 +150,6 @@ Ejemplo de comando con argumentos:
 @bot.command()
 async def decir(ctx, *, mensaje):
     await ctx.send(mensaje)  # Repite el mensaje enviado
-```
-
----
-
-## 🖼️ Usando APIs con `requests`
-
-Podemos hacer que nuestro bot obtenga datos de una API externa, como imágenes de gatos o memes aleatorios.
-
-Primero, instala `requests` si no lo tienes:
-```bash
-pip install requests
-```
-
-Ejemplo de comando para obtener un meme aleatorio de [some-random-api](https://some-random-api.com/):
-
-```python
-import requests
-
-@bot.command()
-async def meme(ctx):
-    response = requests.get("https://some-random-api.com/meme")
-    if response.status_code == 200:
-        data = response.json()
-        await ctx.send(data["image"])
-    else:
-        await ctx.send("No pude obtener un meme 😢")
-```
-
-Otro ejemplo para obtener imágenes de gatitos de [The Cat API](https://thecatapi.com/):
-
-```python
-@bot.command()
-async def gato(ctx):
-    response = requests.get("https://api.thecatapi.com/v1/images/search")
-    if response.status_code == 200:
-        data = response.json()
-        await ctx.send(data[0]["url"])
-    else:
-        await ctx.send("No encontré gatitos 😿")
 ```
 
 ---
