@@ -91,6 +91,10 @@ async def ayuda(ctx):
     await ctx.send(embed=embed)
 
 # Cargar el token desde un archivo .env por seguridad
-load_dotenv()
+load_dotenv("D:/Kodland/Python Pro/M2/L2/discord_token.env")
 TOKEN = os.getenv('DISCORD_TOKEN')
+
+if TOKEN is None:
+    raise ValueError("No se encontró el token de Discord. Asegúrate de que existe el archivo .env con DISCORD_TOKEN")
+
 bot.run(TOKEN)
