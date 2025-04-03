@@ -1,4 +1,4 @@
-# 🤖 Introducción a discord.py
+# 📘 Curso Python Pro - README General
 
 ¡Hola chicos del curso de Python Pro! 👋
 
@@ -6,8 +6,19 @@ En este README encontrarán información básica para repasar los principales co
 
 ---
 
-## 📦 Instalación
+## 📌 Índice  
+1. [Introducción a discord.py](#-introducción-a-discordpy)  
+2. [Uso de dotenv para Tokens](#-uso-de-dotenv-para-tokens)  
+3. [Llamadas a APIs con requests](#-llamadas-a-apis-con-requests)  
+4. [Gestión de Git y GitHub](#-gestión-de-git-y-github)  
 
+---
+
+## 🤖 Introducción a discord.py  
+> Explicación sobre la librería `discord.py`, cómo crear un bot y comandos básicos.  
+[Volver al Índice](#-índice)  
+
+### 📦 Instalación
 Antes de empezar, asegúrate de tener Python instalado en tu PC (preferiblemente 3.8 o superior).
 
 Para instalar discord.py, usa este comando en la terminal:
@@ -15,9 +26,7 @@ Para instalar discord.py, usa este comando en la terminal:
 pip install discord
 ```
 
----
-
-## 🔥 Funciones Clave de discord.py
+### 🔥 Funciones Clave de discord.py
 
 | Funcionalidad | Descripción |
 |--------------|-------------|
@@ -29,9 +38,7 @@ pip install discord
 | `discord.Embed` | Permite crear mensajes embellecidos con títulos, colores e imágenes. |
 | `bot.run(TOKEN)` | Inicia el bot con el token de autenticación. |
 
----
-
-## 🛠️ Creando un Bot Básico
+### 🛠️ Creando un Bot Básico
 
 1️⃣ Ve a [Discord Developer Portal](https://discord.com/developers/applications), crea una aplicación y un bot.
 2️⃣ Copia el **TOKEN** del bot (guárdalo en un `.env`, nunca lo compartas).
@@ -59,106 +66,84 @@ async def hola(ctx):
 bot.run(os.getenv("DISCORD_TOKEN"))
 ```
 
+[Volver al Índice](#-índice)  
+
 ---
 
-## 🛡️ Usando `dotenv` para Proteger el TOKEN del Bot
+## 🔒 Uso de dotenv para Tokens  
+> Cómo ocultar información sensible usando `.env`.  
+[Volver al Índice](#-índice)  
 
-Para evitar exponer información sensible como el TOKEN del bot, usamos `dotenv`, que nos permite almacenar valores en un archivo `.env`. 🎭
+### 🛑 Protegiendo el TOKEN con dotenv
 
-### 1️⃣ Instalar `python-dotenv`
-Ejecuta en la terminal:
+Para evitar exponer información sensible como el TOKEN del bot, usamos `python-dotenv`.
+
+1️⃣ Instalar dotenv:
 ```bash
 pip install python-dotenv
 ```
 
-### 2️⃣ Crear el archivo `.env`
-En el directorio del proyecto, crea un archivo llamado `.env` y agrega:
+2️⃣ Crear un archivo `.env` y guardar el TOKEN:
 ```env
-DISCORD_TOKEN=tu_super_secreto_token_aqui
-```
-🔹 **Recuerda**: Para evitar que este archivo se suba a GitHub, agrégalo al `.gitignore`:
-```bash
-echo "*.env" >> .gitignore
+DISCORD_TOKEN=tu_token_aqui
 ```
 
-### 3️⃣ Modificar `bot.py` para Usar `dotenv`
+3️⃣ Modificar el código para leerlo desde el `.env`:
 ```python
-import discord
-from discord.ext import commands
+from dotenv import load_dotenv
 import os
-from dotenv import load_dotenv  # Importamos dotenv
 
-# Cargar variables desde .env
-load_dotenv()
-TOKEN = os.getenv("DISCORD_TOKEN")  # Obtener el TOKEN del archivo .env
-
-bot = commands.Bot(command_prefix="!")
-
-@bot.event
-async def on_ready():
-    print(f'✅ {bot.user} está listo para la acción!')
-
-bot.run(TOKEN)  # Iniciar el bot
+load_dotenv()  # Carga las variables del .env
+TOKEN = os.getenv("DISCORD_TOKEN")
 ```
 
-### 4️⃣ Verificar que Todo Funcione
-Ejecuta el script:
-```bash
-python bot.py
+4️⃣ Añadir `.env` al `.gitignore` para que no se suba a GitHub:
+```gitignore
+*.env
 ```
-Si todo está bien, deberías ver el mensaje ✅ en la consola sin exponer tu TOKEN en el código. 🎉
+
+🔹 **Nunca compartas tu TOKEN**, usa `.env` o variables de entorno.  
+[Volver al Índice](#-índice)  
 
 ---
 
-## ⚡ Eventos Importantes
+## 🌐 Llamadas a APIs con requests  
+> Explicación sobre cómo hacer peticiones HTTP en Python.  
+[Volver al Índice](#-índice)  
 
-Discord usa eventos para reaccionar a lo que ocurre en los servidores. Algunos esenciales:
-
+Ejemplo de bot que obtiene imágenes aleatorias de gatos usando `requests`:
 ```python
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return  # Evitar que el bot se responda a sí mismo
-    
-    if "ping" in message.content.lower():
-        await message.channel.send("Pong! 🏓")
+import requests
 
-    await bot.process_commands(message)  # Permite que los comandos funcionen
-```
-
-```python
-@bot.event
-async def on_member_join(member):
-    channel = discord.utils.get(member.guild.channels, name="general")
-    if channel:
-        await channel.send(f'Bienvenido, {member.mention}! 🎉')
-```
-
----
-
-## 🎮 Comandos Más Usados
-
-| Comando | Descripción |
-|---------|-------------|
-| `!hola` | Saluda al usuario |
-| `!ping` | Responde "Pong!" |
-| `!info` | Muestra info del servidor |
-| `!clear N` | Borra N mensajes del chat (requiere permisos) |
-
-Ejemplo de comando con argumentos:
-```python
 @bot.command()
-async def decir(ctx, *, mensaje):
-    await ctx.send(mensaje)  # Repite el mensaje enviado
+async def gato(ctx):
+    response = requests.get("https://api.thecatapi.com/v1/images/search")
+    if response.status_code == 200:
+        data = response.json()
+        await ctx.send(data[0]['url'])
+    else:
+        await ctx.send("No pude obtener una imagen 😿")
 ```
+
+[Volver al Índice](#-índice)  
 
 ---
 
-## 🛑 Consejos Importantes
+## 🛠 Gestión de Git y GitHub  
+> Cómo trabajar con control de versiones para proyectos colaborativos.  
+[Volver al Índice](#-índice)  
 
-🔹 **Nunca compartas tu TOKEN** (usa un `.env` o variables de entorno).
-🔹 Usa `bot.process_commands(message)` en `on_message` para evitar conflictos con comandos.
-🔹 Lee la documentación oficial: [discord.py Docs](https://discordpy.readthedocs.io/en/stable/)
+### 📌 Comandos básicos
+
+```bash
+git init  # Inicializa un repositorio
+git add .  # Añadir cambios
+git commit -m "Mensaje"  # Guardar cambios
+git push origin main  # Subir al repositorio remoto
+```
+
+🔹 **Recuerda:** Usa `.gitignore` para evitar subir archivos sensibles.  
+[Volver al Índice](#-índice)  
 
 ---
 
