@@ -1,0 +1,22 @@
+{
+    "info_basica": {
+        "title": "Información Básica",
+        "content": "El reciclaje es un proceso en el que los materiales usados se convierten en nuevos productos para evitar el desperdicio.",
+        "emoji": "ℹ️"
+    },
+    "separacion_desechos": {
+        "title": "Separación de Desechos",
+        "content": "Para reciclar correctamente, separa los desechos en orgánicos, plásticos, vidrios y papel/cartón.",
+        "emoji": "🗑️"
+    },
+    "importancia_reciclaje": {
+        "title": "Importancia del Reciclaje",
+        "content": "El reciclaje ayuda a reducir la contaminación, ahorrar energía y conservar los recursos naturales.",
+        "emoji": "♻️"
+    },
+    "cambio_climatico": {
+        "title": "Impacto en el Cambio Climático",
+        "content": "El reciclaje reduce las emisiones de gases de efecto invernadero al disminuir la necesidad de producir materiales nuevos.",
+        "emoji": "🌡️"
+    }
+}
