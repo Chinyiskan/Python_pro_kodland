@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+body {
+    background-color: burlywood;
+    align-items: center;
+    text-align: center;
+}
+
+h1{
+    color: chocolate;
+    font-size: 80px;
+    font-weight: 900;
+    font-style: italic;
+}
+
+h2 {
+    color: crimson;
+    font-size: 50px;
+}
+
+p {
+    color: black;
+    font-size: 30px;
+    font: "Merriweather", sans-serif;
+    font-weight: 500;
+}
+
+img {
+    border-radius: 10px;
+    border: 5px solid black;
+    width: 50%;
+}
+
+ul, ol {
+    list-style-position: inside;
+    font-size: 25px; 
+    color: black;
+    font: "Merriweather", sans-serif;
+}
