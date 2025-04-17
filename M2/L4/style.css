@@ -1,0 +1,106 @@
+body{
+    background-color: lightgray;            
+    color: black;
+    padding: 20px;
+}
+
+@keyframes color-change {
+    0% {
+        color: crimson;
+    }
+
+    50% {
+    color: coral;
+    }
+
+    100% {
+    color: crimson;
+    }
+}       
+
+h1 {
+    animation: color-change 3s infinite;
+    font-size: 90px;
+}
+
+h2{
+    color: crimson;
+    font-size: 40px;
+}
+
+p{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.parrafo2{
+    font-style: italic;
+}
+
+img{
+    border: 5px solid chocolate;
+    border-radius: 15px;
+    width: 50%;
+}
+
+.boton {
+    background-color: skyblue;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin-left: 50%;
+}
+
+.boton:hover {
+    background-color: purple;
+    color: white;
+    transform: scale(1.2);
+}
+
+li{
+    font-size: 30px;
+}
+
+.rebotador {
+    position: relative;
+    animation: rebote 1s infinite;
+    margin-bottom: 40px;
+}
+
+@keyframes rebote {
+    0%   { top: 0px; }
+    50%  { top: 50px; }
+    100% { top: 0px; }
+}
+
+.girar {
+    transition: transform 1s;
+    width: 30%;
+}
+
+.girar:hover {
+    transform: rotate(360deg);
+}
+
+.maquina {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid black;
+    width: 0;
+    animation: escribir 3s steps(12) forwards;
+}
+
+@keyframes escribir {
+    to { width: 28ch; }
+}
+
+.carita {
+    font-size: 50px;
+    animation: parpadear 1s infinite;
+}
+
+@keyframes parpadear {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.2; }
+}
