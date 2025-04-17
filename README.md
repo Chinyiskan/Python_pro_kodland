@@ -11,6 +11,7 @@ En este README encontrarán información básica para repasar los principales co
 2. [Uso de dotenv para Tokens](#-uso-de-dotenv-para-tokens)  
 3. [Llamadas a APIs con requests](#-llamadas-a-apis-con-requests)  
 4. [Gestión de Git y GitHub](#-gestión-de-git-y-github)  
+5. [Introducción a HTML y CSS](#-introducción-a-html-y-css)  
 
 ---
 
@@ -143,8 +144,7 @@ git push origin main  # Subir al repositorio remoto
 ```
 
 🔹 **Recuerda:** Usa `.gitignore` para evitar subir archivos sensibles.  
-[Volver al Índice](#-índice)  
-
+ 
 ---
 
 ## 🎯 Ahora es tu turno
@@ -152,4 +152,83 @@ git push origin main  # Subir al repositorio remoto
 Con estas bases, ya puedes empezar a crear tu propio bot y explorar nuevas funcionalidades. 🚀
 
 Si tienes dudas, pregunta en la comunidad o revisa ejemplos online. ¡Diviértete programando! 🎉
+
+---
+
+## 🌐 Introducción a HTML y CSS  
+> Antes de usar Flask, debemos entender cómo se estructura y se diseña una página web. Aquí va una introducción muy básica.  
+[Volver al Índice](#-índice)
+
+### 🧱 ¿Qué es HTML?
+HTML (HyperText Markup Language) es el lenguaje que usamos para **estructurar** el contenido de una página web.
+
+Ejemplo de una estructura básica:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Gatos</title>
+</head>
+<body>
+    <h1>Bienvenido a la Web de Gatitos 🐱</h1>
+    <p>Estos son algunos gatos muy adorables:</p>
+    <img src="https://placekitten.com/300/200" alt="Gato lindo">
+</body>
+</html>
+```
+
+### 🎨 ¿Qué es CSS?
+CSS (Cascading Style Sheets) se usa para **dar estilo** a los elementos HTML: colores, tamaños, márgenes, etc.
+
+Ejemplo de reglas CSS básicas:
+```html
+<style>
+  body {
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  h1 {
+    color: #663399;
+  }
+  img {
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+  }
+</style>
+```
+
+### 🐾 Resultado Final
+Una página HTML + CSS simple de gatos:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gatitos Web</title>
+    <style>
+        body {
+            background-color: #fce4ec;
+            font-family: sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #e91e63;
+        }
+        img {
+            width: 300px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🐱 Galería de Gatitos</h1>
+    <p>¡Mira qué lindos!</p>
+    <img src="https://placekitten.com/300/200" alt="gatito">
+</body>
+</html>
+```
+
+Así empezamos a entender cómo se construyen las páginas web, ¡para luego conectarlas con Python y Flask! 🚀
+
+[Volver al Índice](#-índice)
 
