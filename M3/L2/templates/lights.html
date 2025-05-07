@@ -5,23 +5,30 @@
   <ul class="list">
     <li class="list__item">
       <a href="{{ url_for('select_devices', size=size, lights=3) }}">
-        <img src="{{ url_for('static', filename='img/light.svg') }}" alt="2-4 lámparas">
+        <img src="{{ url_for('static', filename='img/light.svg') }}" alt="2-4 lámparas" class="item__img">
         <span>2–4 lámparas</span>
       </a>
     </li>
     <li class="list__item">
       <!-- TAREA 2: Completa esta ruta usando size y lights=7 -->
       <a href="{{ url_for('select_devices', size=size, lights=7) }}">
-        <img src="{{ url_for('static', filename='img/light.svg') }}" alt="4-6 lámparas">
+        <img src="{{ url_for('static', filename='img/light.svg') }}" alt="4-6 lámparas" class="item__img">
         <span>4–6 lámparas</span>
       </a>
     </li>
     <li class="list__item">
       <!-- TAREA 2: Completa esta ruta usando size y lights=10 -->
       <a href="{{ url_for('select_devices', size=size, lights=10) }}">
-        <img src="{{ url_for('static', filename='img/light.svg') }}" alt="8+ lámparas">
+        <img src="{{ url_for('static', filename='img/light.svg') }}" alt="8+ lámparas" class="item__img">
         <span>8+ lámparas</span>
       </a>
+
+      <li class="list__item">
+        <a href="javascript:void(0)">
+          <img src="{{ url_for('static', filename='img/light.svg') }}" alt="ecologico" class="item__img">
+          <span>Nuestro montaje ecológico!</span>
+        </a>
+      </li>
     </li>
   </ul>
 {% endblock %}

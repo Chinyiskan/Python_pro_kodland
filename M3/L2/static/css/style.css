@@ -67,10 +67,18 @@ main {
     border: 1px solid #EB8028;
     transition: 0.2s;
 }
+
 .item__img {
-    object-fit: contain;
-    width: 150px;
+    max-width: 100%;
+    height: auto;
+    width: 200px;
+    border-radius: 16px;
 }
+
+#ecologico{
+    color: green;
+}
+
 
 .list__item a:hover {
     box-shadow: 1px 1px 4px 4px #0EB07C;
