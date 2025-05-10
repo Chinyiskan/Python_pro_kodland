@@ -1,0 +1,16 @@
+<!-- Crear una página que emita los datos del usuario -->
+{% extends 'base.html' %}
+{% block title %}Resultado del formulario{% endblock %}
+
+{% block content %}
+<!-- Escribir codigo aqui 😉-->
+    <h2 class="main__title">Resultado del formulario</h2>
+    <div class="main__rez">
+        <p>Nombre: {{ name }}</p>
+        <p>Correo electrónico: {{ email }}</p>
+        <p>Dirección: {{ address }}</p>
+        <p>Fecha: {{ date }}</p>
+    </div>
+    
+    <a href="{{ url_for('index') }}" class="main__link">Volver a inicio</a>
+{% endblock %}

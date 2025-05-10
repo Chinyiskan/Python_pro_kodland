@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Formulario{% endblock %}
+
+{% block content %}
+  <h2 class="main__title">Formulario de visita técnica</h2>
+  <form action="{{ url_for('submit_form') }}" method="post" class="form">
+    <div class="user">
+      <ul class="user-info">
+        <li class="user-info__item">
+          <label for="name">Su nombre</label>
+          <input type="text" name="name" id="name" placeholder="Introduzca su nombre completo" required>
+        </li>
+        <li class="user-info__item">
+          <!-- Tarea 4. Crear un campo de entrada para el correo electrónico del usuario -->
+          <label for="email">Su correo electrónico</label>
+          <input type="email" name="email" id="email" placeholder="Introduzca su correo electrónico" required>
+        </li>
+      </ul>
+      <ul class="address-date">
+        <li class="user-info__item">
+          <label for="address">Especifique su dirección</label>
+          <input type="text" name="address" id="address" placeholder="Su dirección" required>
+        </li>
+        <li class="user-info__item">
+          <label for="date">Especifique la fecha en la que desea que lleguen nuestros especialistas</label>
+          <input type="date" name="date" id="date" required>
+        </li>
+      </ul>
+    </div>
+    <button class="button" type="submit">Listo</button>
+  </form>
+{% endblock %}

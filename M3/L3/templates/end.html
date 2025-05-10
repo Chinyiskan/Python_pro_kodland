@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Resultado{% endblock %}
+{% block content %}
+  <h2 class="main__title">Tu consumo estimado:</h2>
+  <div class="main__rez">
+    {% if result <= 150 %}
+      <img src="{{ url_for('static', filename='img/planet_good.svg') }}" alt="bueno">
+      <p>Su resultado: {{ result }} kWh. ¡Excelente eficiencia!</p>
+    
+      {% elif result < 300 %}
+      <img src="{{ url_for('static', filename='img/planet_medium.svg') }}" alt="medio">
+      
+      <!-- Tarea: colocar el span con el nuevo enlace -->
+      <p>Su resultado: {{ result }} kWh. Eficiencia media.</p>
+      <span>¿Quieres hacer del mundo un lugar más ecológico? ¡Rellena el formulario y haremos una eco-construcción para ti!</span>
+      <a href="{{ url_for('form') }}" class="main__link">Rellene el formulario</a>
+    
+      {% else %}
+      <img src="{{ url_for('static', filename='img/planet_bad.svg') }}" alt="bajo">
+      <p>Su resultado: {{ result }} kWh. ¡Necesita mejorar!</p>
+    {% endif %}
+  </div>
+{% endblock %}

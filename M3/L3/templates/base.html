@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>{% block title %}Eficiencia Energética{% endblock %}</title>
+</head>
+<body>
+  <header class="header">
+    <div class="header__text">
+      <h1>Calculadora de eficiencia energética</h1>
+      <p>Tome la iniciativa y reduzca su consumo.</p>
+    </div>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer></footer>
+</body>
+</html>
