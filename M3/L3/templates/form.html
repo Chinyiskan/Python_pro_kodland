@@ -6,15 +6,18 @@
   <form action="{{ url_for('submit_form') }}" method="post" class="form">
     <div class="user">
       <ul class="user-info">
+        
         <li class="user-info__item">
           <label for="name">Su nombre</label>
           <input type="text" name="name" id="name" placeholder="Introduzca su nombre completo" required>
         </li>
+        
         <li class="user-info__item">
           <!-- Tarea 4. Crear un campo de entrada para el correo electrónico del usuario -->
           <label for="email">Su correo electrónico</label>
           <input type="email" name="email" id="email" placeholder="Introduzca su correo electrónico" required>
         </li>
+      
       </ul>
       <ul class="address-date">
         <li class="user-info__item">
