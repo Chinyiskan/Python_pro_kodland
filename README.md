@@ -12,6 +12,9 @@ En este README encontrarán información básica para repasar los principales co
 3. [Llamadas a APIs con requests](#-llamadas-a-apis-con-requests)  
 4. [Gestión de Git y GitHub](#-gestión-de-git-y-github)  
 5. [Introducción a HTML y CSS](#-introducción-a-html-y-css)  
+6. [Plantillas Jinja2 en Flask](#-plantillas-jinja2-en-flask)
+7. [Formularios HTML con Flask](#-formularios-html-con-flask)
+8. [SQLAlchemy con Flask](#-sqlalchemy-con-flask)
 
 ---
 
@@ -103,7 +106,6 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 *.env
 ```
 
-🔹 **Nunca compartas tu TOKEN**, usa `.env` o variables de entorno.  
 [Volver al Índice](#-índice)  
 
 ---
@@ -111,6 +113,13 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 ## 🌐 Llamadas a APIs con requests  
 > Explicación sobre cómo hacer peticiones HTTP en Python.  
 [Volver al Índice](#-índice)  
+
+### 📦 Instalación
+```bash
+pip install requests
+```
+
+### 🔥 Ejemplo de Uso
 
 Ejemplo de bot que obtiene imágenes aleatorias de gatos usando `requests`:
 ```python
@@ -144,19 +153,13 @@ git push origin main  # Subir al repositorio remoto
 ```
 
 🔹 **Recuerda:** Usa `.gitignore` para evitar subir archivos sensibles.  
- 
----
 
-## 🎯 Ahora es tu turno
-
-Con estas bases, ya puedes empezar a crear tu propio bot y explorar nuevas funcionalidades. 🚀
-
-Si tienes dudas, pregunta en la comunidad o revisa ejemplos online. ¡Diviértete programando! 🎉
+[Volver al Índice](#-índice)
 
 ---
 
 ## 🌐 Introducción a HTML y CSS  
-> Antes de usar Flask, debemos entender cómo se estructura y se diseña una página web. Aquí va una introducción muy básica.  
+> Antes de usar Flask, debemos entender cómo se estructura y se diseña una página web.
 [Volver al Índice](#-índice)
 
 ### 🧱 ¿Qué es HTML?
@@ -167,68 +170,184 @@ Ejemplo de una estructura básica:
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Página de Gatos</title>
+    <title>Mi Primera Página</title>
 </head>
 <body>
-    <h1>Bienvenido a la Web de Gatitos 🐱</h1>
-    <p>Estos son algunos gatos muy adorables:</p>
-    <img src="https://placekitten.com/300/200" alt="Gato lindo">
+    <h1>Bienvenido a mi Web</h1>
+    <p>Este es un párrafo de ejemplo.</p>
+    <img src="imagen.jpg" alt="Una imagen">
 </body>
 </html>
 ```
 
 ### 🎨 ¿Qué es CSS?
-CSS (Cascading Style Sheets) se usa para **dar estilo** a los elementos HTML: colores, tamaños, márgenes, etc.
+CSS (Cascading Style Sheets) se usa para **dar estilo** a los elementos HTML.
 
-Ejemplo de reglas CSS básicas:
 ```html
 <style>
   body {
     background-color: #f0f8ff;
     font-family: Arial, sans-serif;
-    text-align: center;
   }
   h1 {
     color: #663399;
   }
-  img {
-    border-radius: 10px;
-    box-shadow: 0 0 10px gray;
-  }
 </style>
 ```
 
-### 🐾 Resultado Final
-Una página HTML + CSS simple de gatos:
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Gatitos Web</title>
-    <style>
-        body {
-            background-color: #fce4ec;
-            font-family: sans-serif;
-            text-align: center;
-        }
-        h1 {
-            color: #e91e63;
-        }
-        img {
-            width: 300px;
-            border-radius: 15px;
-        }
-    </style>
-</head>
-<body>
-    <h1>🐱 Galería de Gatitos</h1>
-    <p>¡Mira qué lindos!</p>
-    <img src="https://placekitten.com/300/200" alt="gatito">
-</body>
-</html>
+[Volver al Índice](#-índice)
+
+---
+
+## 🎨 Plantillas Jinja2 en Flask
+> Cómo usar el motor de plantillas Jinja2 para crear páginas web dinámicas con Flask.
+[Volver al Índice](#-índice)
+
+### 📦 Instalación
+Jinja2 viene incluido con Flask, así que no necesitas instalarlo por separado.
+
+### 🔥 Sintaxis Básica de Jinja2
+
+| Sintaxis | Descripción |
+|----------|-------------|
+| `{{ variable }}` | Muestra el valor de una variable |
+| `{% if condición %}` | Estructuras de control (if, for, etc.) |
+| `{# comentario #}` | Comentarios que no se mostrarán en el HTML |
+| `{% extends 'base.html' %}` | Herencia de plantillas |
+| `{% block nombre %}` | Bloques que pueden ser sobrescritos |
+
+### 🛠️ Ejemplo de Uso
+
+```python
+# En Flask (app.py)
+@app.route('/')
+def index():
+    nombre = "Usuario"
+    items = ["Item 1", "Item 2", "Item 3"]
+    return render_template('index.html', nombre=nombre, items=items)
 ```
 
-Así empezamos a entender cómo se construyen las páginas web, ¡para luego conectarlas con Python y Flask! 🚀
+```html
+<!-- En la plantilla (index.html) -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>¡Hola, {{ nombre }}!</h1>
+    
+    <ul>
+    {% for item in items %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+```
 
 [Volver al Índice](#-índice)
 
+---
+
+## 📝 Formularios HTML con Flask
+> Procesamiento de formularios web usando Flask.
+[Volver al Índice](#-índice)
+
+### 🔥 Conceptos Clave
+
+| Concepto | Descripción |
+|----------|-------------|
+| `methods=['GET', 'POST']` | Especifica métodos permitidos en la ruta |
+| `request.form` | Accede a datos enviados por POST |
+| `request.args` | Accede a datos enviados por GET |
+| `redirect()` | Redirecciona a otra página |
+
+### 🛠️ Ejemplo de Formulario
+
+```python
+# En Flask
+@app.route('/form', methods=['GET', 'POST'])
+def form():
+    if request.method == 'POST':
+        nombre = request.form.get('nombre')
+        return f'¡Hola, {nombre}!'
+    return render_template('form.html')
+```
+
+```html
+<!-- form.html -->
+<form method="POST" action="{{ url_for('form') }}">
+    <input type="text" name="nombre" required>
+    <button type="submit">Enviar</button>
+</form>
+```
+
+[Volver al Índice](#-índice)
+
+---
+
+## 🗄️ SQLAlchemy con Flask
+> ORM (Object-Relational Mapping) para trabajar con bases de datos en Flask.
+[Volver al Índice](#-índice)
+
+### 📦 Instalación
+```bash
+pip install flask-sqlalchemy
+```
+
+### 🔥 Configuración Básica
+
+```python
+from flask_sqlalchemy import SQLAlchemy
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db = SQLAlchemy(app)
+```
+
+### 📊 Definiendo Modelos
+
+```python
+class Usuario(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(120), unique=True)
+```
+
+### 🛠️ Operaciones Comunes
+
+| Operación | Código |
+|-----------|--------|
+| Crear registro | `db.session.add(nuevo_usuario)` |
+| Guardar cambios | `db.session.commit()` |
+| Buscar todos | `Usuario.query.all()` |
+| Buscar por ID | `Usuario.query.get(1)` |
+| Filtrar | `Usuario.query.filter_by(nombre='Juan')` |
+| Ordenar | `Usuario.query.order_by(Usuario.nombre)` |
+
+### 📝 Ejemplo Completo
+
+```python
+# Crear
+nuevo_usuario = Usuario(nombre='Juan', email='juan@ejemplo.com')
+db.session.add(nuevo_usuario)
+db.session.commit()
+
+# Leer
+usuarios = Usuario.query.all()
+usuario = Usuario.query.get(1)
+
+# Actualizar
+usuario.nombre = 'Juan Carlos'
+db.session.commit()
+
+# Eliminar
+db.session.delete(usuario)
+db.session.commit()
+```
+
+[Volver al Índice](#-índice)
+
+---
+
+## 🎯 Ahora es tu turno
+
+Con estas bases, ya puedes empezar a crear tus propias aplicaciones web con Flask. 🚀
+
+Si tienes dudas, pregunta en la comunidad o revisa la documentación oficial. ¡Diviértete programando! 🎉
