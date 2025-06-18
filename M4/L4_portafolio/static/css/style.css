@@ -146,7 +146,11 @@ ul {
 }
 
 .info-block__text {
-  width: 40%;
+  width: 50%;
+  font-size: 30px;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  margin-bottom: 20px;
 }
 
 .info-block__img {
@@ -308,7 +312,7 @@ ul {
   font: inherit;
   background: #FFB900;
   border: 2px solid #a178b9;
-  color: #F80E2A;
+  color: black;
   padding: 15px;
   border-radius: 10px;
   filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.25));
